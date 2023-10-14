@@ -4,9 +4,10 @@ import Header from "./components/Header";
 import Mobile from "./components/Mobile";
 import Pagination from "./components/Pagination";
 import { AppContext } from "./context/AppContext";
+import Spinner from "./components/Spinner";
 
 function App() {
-  const { fetchData,page } = useContext(AppContext);
+  const { fetchData,page,loading } = useContext(AppContext);
 
   useEffect(() => {
     fetchData(page);
@@ -14,7 +15,7 @@ function App() {
   return (
     <div className="flex flex-col items-cente h-[100vh]">
       <Header />
-      <Pagination />
+      {loading? <Spinner/> : <Pagination/>}
       <Mobile />
     </div>
   );
